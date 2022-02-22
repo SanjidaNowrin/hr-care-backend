@@ -37,9 +37,9 @@ const errorHandler = (err, req, res, next) => {
 app.use(errorHandler);
 
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.send("Server Running....");
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`App listening on port ${port}`);
 });
