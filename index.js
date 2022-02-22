@@ -6,6 +6,7 @@ require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
 const employeesHandler = require("./routeHandler/employeesHandler");
+const AddCourseHandler = require("./routeHandler/AddCourseHandler");
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -24,6 +25,7 @@ mongoose
 
 // application routes
 app.use("/employees", employeesHandler);
+app.use("/courses", AddCourseHandler);
 
 
 // default error handler
