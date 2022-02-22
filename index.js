@@ -6,6 +6,7 @@ require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
 const employeesHandler = require("./routeHandler/employeesHandler");
+const announcementHandler = require("./routeHandler/announcementHandler");
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -15,16 +16,16 @@ const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.o0i8
 
 mongoose
     .connect(uri, {
-        useNewUrlParser: true, useUnifiedTopology: true,
-        dbName: 'hr-care'
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        dbName: "hr-care",
     })
     .then(() => console.log("connection successful"))
     .catch((err) => console.log(err));
 
-
 // application routes
 app.use("/employees", employeesHandler);
-
+app.use("/announcement", announcementHandler);
 
 // default error handler
 const errorHandler = (err, req, res, next) => {
@@ -32,7 +33,7 @@ const errorHandler = (err, req, res, next) => {
         return next(err);
     }
     res.status(500).json({ error: err });
-}
+};
 
 app.use(errorHandler);
 
