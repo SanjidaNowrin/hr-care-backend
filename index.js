@@ -7,6 +7,7 @@ const { MongoClient } = require("mongodb");
 
 const employeesHandler = require("./routeHandler/employeesHandler");
 const announcementHandler = require("./routeHandler/announcementHandler");
+const attendanceHandler = require("./routeHandler/attendanceHandler");
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -26,6 +27,7 @@ mongoose
 // application routes
 app.use("/employees", employeesHandler);
 app.use("/announcement", announcementHandler);
+app.use("/", attendanceHandler);
 
 // default error handler
 const errorHandler = (err, req, res, next) => {
