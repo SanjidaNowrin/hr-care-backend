@@ -27,7 +27,7 @@ mongoose
 // application routes
 app.use("/employees", employeesHandler);
 app.use("/announcement", announcementHandler);
-app.use("/", attendanceHandler);
+app.use("/attendance", attendanceHandler);
 
 // default error handler
 const errorHandler = (err, req, res, next) => {
