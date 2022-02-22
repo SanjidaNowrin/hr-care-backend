@@ -25,7 +25,7 @@ mongoose
     .catch((err) => console.log(err));
 
 // application routes
-app.use("/employees", employeesHandler);
+app.use("/", employeesHandler);
 app.use("/announcement", announcementHandler);
 app.use("/", attendanceHandler);
 
