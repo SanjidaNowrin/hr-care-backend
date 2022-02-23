@@ -6,7 +6,7 @@ const Employees = new mongoose.model("employee", employeesSchema);
 
 
 // POST A Employees
-router.post("/", async (req, res) => {
+router.post("/employeeRequest", async (req, res) => {
     const newEmployees = new Employees({
         ...req.body,
 
@@ -26,5 +26,19 @@ router.post("/", async (req, res) => {
     }
 
 })
-
+// get employees
+router.get("/allEmployees", async (req, res) => {
+    try {
+        const allEmployees = await Employees.find({});
+        res.status(200).json({
+            data: allEmployees,
+            message: "allEmployees Success",
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "There was an error on the server side",
+        });
+    } 
+});
 module.exports = router;
