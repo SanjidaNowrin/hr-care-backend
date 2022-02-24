@@ -26,6 +26,7 @@ router.post("/", async (req, res) => {
     }
 
 })
+
 // get employees
 router.get("/", async (req, res) => {
     try {
