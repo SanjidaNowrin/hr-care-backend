@@ -1,3 +1,3 @@
-# HR Care (Server Code)
+# Travel Vlog (Server Code)
 
-Github Client Link: https://github.com/md-mh/hr-care-client
+Github Client Link: https://github.com/md-mh/travel-blog-client
