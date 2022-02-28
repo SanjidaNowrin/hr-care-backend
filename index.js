@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
-const { MongoClient } = require("mongodb");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const employeesHandler = require("./routeHandler/employeesHandler");
 const announcementHandler = require("./routeHandler/announcementHandler");
@@ -14,12 +14,13 @@ app.use(cors());
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.o0i8x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-
 mongoose
     .connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         dbName: "hr-care",
+
+        serverApi: ServerApiVersion.v1.at
     })
     .then(() => console.log("connection successful"))
     .catch((err) => console.log(err));
