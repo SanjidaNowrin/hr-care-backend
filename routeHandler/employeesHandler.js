@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
 
 })
 
-// get employees
+// Get employees
 router.get("/", async (req, res) => {
     try {
         const allEmployees = await Employees.find({});
@@ -42,4 +42,40 @@ router.get("/", async (req, res) => {
         });
     }
 });
+
+//Get single employee by email
+router.get("/:email", async (req, res) => {
+    try {
+        const data = await Employees.find({ email: req.params.email });
+        res.status(200).json({
+            result: data,
+            message: "Success",
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: "There was a server side error!",
+        });
+    }
+});
+
+//UPDATE Employee Info
+router.put("/:_id", async (req, res) => {
+
+    try {
+        const updateEmployee = await Employees.findByIdAndUpdate(
+            req.params._id,
+            req.body,
+            { new: true },
+        );
+        updateEmployee.save();
+        res.send({ data: updateEmployee });
+        console.log(updateEmployee);
+
+    } catch {
+        res.status(404).send({ error: "Employee is not found!" });
+    }
+
+});
+
+
 module.exports = router;
