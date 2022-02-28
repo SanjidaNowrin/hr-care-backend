@@ -9,6 +9,7 @@ const employeesHandler = require("./routeHandler/employeesHandler");
 const announcementHandler = require("./routeHandler/announcementHandler");
 const attendanceHandler = require("./routeHandler/attendanceHandler");
 const AddCourseHandler = require("./routeHandler/AddCourseHandler");
+const holidayHandler = require("./routeHandler/holidayHandler");
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -30,6 +31,7 @@ app.use("/employees", employeesHandler);
 app.use("/announcement", announcementHandler);
 app.use("/attendance", attendanceHandler);
 app.use("/courses", AddCourseHandler);
+app.use("/holidays", holidayHandler);
 
 
 // default error handler

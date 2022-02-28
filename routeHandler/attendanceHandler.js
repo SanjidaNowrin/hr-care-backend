@@ -4,6 +4,7 @@ const router = express.Router();
 const attendanceSchema = require("../schemas/attendanceSchema");
 const Attendance = new mongoose.model("Attendance", attendanceSchema);
 
+
 //Post entry time
 router.post("/", async (req, res) => {
   const newAttendance = new Attendance(req.body);
