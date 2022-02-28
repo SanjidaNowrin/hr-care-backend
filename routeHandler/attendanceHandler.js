@@ -52,10 +52,10 @@ router.get("/:email", async (req, res) => {
   }
 });
 
-//UPDATE
-router.put("/:email", async (req, res) => {
+//UPDATE Leave Time
+router.put("/:_id", async (req, res) => {
   const result = await Attendance.findOneAndUpdate(
-    { email: req.params.email },
+    { _id: req.params._id },
     {
       $set: {
         leave: new Date().toLocaleString().split(",")[1],
@@ -80,32 +80,5 @@ router.put("/:email", async (req, res) => {
   console.log(result);
 });
 
-//UPDATE
-router.put("/", async (req, res) => {
-  const result = await Attendance.findOneAndUpdate(
-    { date: req.body.date },
-    {
-      $set: {
-        leave: new Date().toLocaleString().split(",")[1],
-      },
-    },
-    {
-      new: true,
-      useFindAndModify: false,
-    },
-    (err) => {
-      if (err) {
-        res.status(500).json({
-          error: "There was a server side error!",
-        });
-      } else {
-        res.status(200).json({
-          message: "Attendance was updated successfully!",
-        });
-      }
-    }
-  ).clone().catch(function (err) { console.log(err) })
-  console.log(result);
-});
 
 module.exports = router;

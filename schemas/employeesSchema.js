@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const employeesSchema = mongoose.Schema({
   ID: Number,
-  DOJ: Date,
+  DOJ: String,
   Gross: Number,
-  Basic: Number,
+  Account: Number,
   name: {
     type: String,
     required: true,
