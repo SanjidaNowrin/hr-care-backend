@@ -45,38 +45,43 @@ router.post("/leave", async (req, res) => {
         });
 
     } catch (err) {
-        console.log(err)
-        // Get employees
-        router.get("/", async (req, res) => {
-            try {
-                const allEmployees = await Employees.find({});
-                res.status(200).json({
-                    data: allEmployees,
-                    message: "allEmployees Success",
-                });
-            } catch (err) {
-                console.log(err);
-                res.status(500).json({
-                    message: "There was an error on the server side",
-                });
-            }
+        console.log(err);
+        res.status(500).json({
+            message: "There was an error on the server side",
         });
+    }
+})
+// Get employees
+router.get("/", async (req, res) => {
+    try {
+        const allEmployees = await Employees.find({});
+        res.status(200).json({
+            data: allEmployees,
+            message: "allEmployees Success",
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "There was an error on the server side",
+        });
+    }
+});
 
-        //Get single employee by email
-        router.get("/:email", async (req, res) => {
-            try {
-                const data = await Employees.find({ email: req.params.email });
-                res.status(200).json({
-                    result: data,
-                    message: "Success",
-                });
-            } catch (err) {
-                res.status(500).json({
-                    error: "There was a server side error!",
-                });
-            }
-        })
-    });
+//Get single employee by email
+router.get("/:email", async (req, res) => {
+    try {
+        const data = await Employees.find({ email: req.params.email });
+        res.status(200).json({
+            result: data,
+            message: "Success",
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: "There was a server side error!",
+        });
+    }
+})
+});
 
 //UPDATE Employee Info
 router.put("/:_id", async (req, res) => {
