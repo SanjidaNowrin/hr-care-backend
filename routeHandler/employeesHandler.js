@@ -80,7 +80,7 @@ router.get("/:email", async (req, res) => {
             error: "There was a server side error!",
         });
     }
-})
+
 });
 
 //UPDATE Employee Info
