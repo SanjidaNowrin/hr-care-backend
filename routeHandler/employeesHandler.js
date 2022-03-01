@@ -2,10 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const employeesSchema = require('../schemas/employeesSchema');
-// const leaveSchema = require('../schemas/leaveSchema');
 const Employees = new mongoose.model("employee", employeesSchema);
-// const Leave = new mongoose.model("leave", leaveSchema);
-
 
 // POST A Employees
 router.post("/", async (req, res) => {
@@ -79,49 +76,5 @@ router.put("/:_id", async (req, res) => {
     }
 
 });
-//post leave application
-// router.post("/leave", async (req, res) => {
-
-//     const leave = new Leave({
-//         ...req.body
-//     });
-
-//     try {
-//         const result = await leave.save();
-//         res.status(200).json({
-//             message: "Leave data was inserted successfully!",
-//             data: result
-//         });
-
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).json({
-//             message: "There was an error on the server side",
-//         });
-//     }
-// })
-
-//approved leave application
-// router.put("/leave/:_id", async (req, res) => {
-
-//     try {
-//         const updateLeave = await Leave.findByIdAndUpdate(
-//             { _id: req.params._id },
-//             {
-//                 tripStart: req.body.tripStart,
-//                 tripEnd: req.body.tripStart,
-//                 status: req.body.status
-//             },
-//             { new: true },
-//         );
-
-//         res.status(200).send({ data: updateLeave });
-//         console.log(updateLeave);
-
-//     } catch {
-//         res.status(404).send({ message: "There was an error on the server side!" });
-//     }
-
-// });
 
 module.exports = router;
