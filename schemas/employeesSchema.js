@@ -41,12 +41,13 @@ const employeesSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  lastCompany: {
-    type: String,
-  },
-  lastDepartment: {
-    type: String,
-  },
+  lastCompany: String,
+  lastDepartment: String,
+  lastDesignation: String,
+  lastDegree: String,
+  lastSubject: String,
+  lastInstitute: String,
+  lastGrade: Number,
 
 });
 
