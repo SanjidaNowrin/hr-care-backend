@@ -44,7 +44,7 @@ const errorHandler = (err, req, res, next) => {
 app.use(errorHandler);
 
 app.get("/", (req, res) => {
-    res.send("Server Running....");
+    res.send("HR Care Server Running....");
 });
 
 app.listen(port, () => {
