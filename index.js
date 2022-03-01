@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient } = require("mongodb");
 
 const employeesHandler = require("./routeHandler/employeesHandler");
 const announcementHandler = require("./routeHandler/announcementHandler");
@@ -21,7 +21,6 @@ mongoose
         useNewUrlParser: true,
         useUnifiedTopology: true,
         dbName: "hr-care",
-
     })
     .then(() => console.log("connection successful"))
     .catch((err) => console.log(err));
@@ -32,7 +31,6 @@ app.use("/announcement", announcementHandler);
 app.use("/attendance", attendanceHandler);
 app.use("/courses", AddCourseHandler);
 app.use("/leave", leaveHandler);
-
 
 // default error handler
 const errorHandler = (err, req, res, next) => {
