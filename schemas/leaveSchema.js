@@ -22,6 +22,9 @@ const leaveSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    daysNumber: {
+        type: String
+    },
     message: {
         type: String,
         required: true,
