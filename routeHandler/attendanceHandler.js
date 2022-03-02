@@ -1,8 +1,7 @@
 const express = require("express");
-// const { ObjectId } = require("mongodb");
+const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 const router = express.Router();
-const ObjectId = require('mongodb').ObjectId;
 const attendanceSchema = require("../schemas/attendanceSchema");
 const Attendance = new mongoose.model("Attendance", attendanceSchema);
 
