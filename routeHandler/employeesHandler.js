@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const employeesSchema = require('../schemas/employeesSchema');
 const Employees = new mongoose.model("employee", employeesSchema);
-
+const fileUpload=require('express-fileupload');
 
 // POST A Employees
 router.post("/", async (req, res) => {

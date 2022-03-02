@@ -3,10 +3,26 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const holidaySchema = require("../schemas/holidaySchema");
 const Holiday = new mongoose.model("Holiday", holidaySchema);
+const attendanceSchema = require("../schemas/attendanceSchema");
+const Attendance = new mongoose.model("Attendance", attendanceSchema);
 
-//Post new holiday
+// //Post new holiday
 router.post("/", async (req, res) => {
     const newHoliday = new Holiday(req.body);
+    await newHoliday.save((err) => {
+      if (err) {
+        res.status(500).json({
+          error: "There was a server side error!",
+        });
+      } else {
+        res.status(200).json({
+          message: "Holiday was inserted successfully!",
+        });
+      }
+    });
+  });
+router.post("/attendance", async (req, res) => {
+    const newHoliday = new Attendance(req.body);
     await newHoliday.save((err) => {
       if (err) {
         res.status(500).json({
