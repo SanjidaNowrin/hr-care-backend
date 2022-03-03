@@ -18,6 +18,10 @@ const leaveSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    email: {
+        type: String,
+        required: true,
+    },
     leaveType: {
         type: String,
         required: true,
