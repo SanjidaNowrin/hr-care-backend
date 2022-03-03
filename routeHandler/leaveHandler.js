@@ -50,7 +50,7 @@ router.put("/:_id", async (req, res) => {
             { _id: req.params._id },
             {
                 tripStart: req.body.tripStart,
-                tripEnd: req.body.tripStart,
+                tripEnd: req.body.tripEnd,
                 status: req.body.status
             },
             { new: true },
