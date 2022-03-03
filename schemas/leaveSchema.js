@@ -14,6 +14,10 @@ const leaveSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    leaveDays: {
+        type: String,
+        required: true,
+    },
     tripStart: {
         type: String,
         required: true,
