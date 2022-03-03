@@ -11,10 +11,12 @@ const attendanceHandler = require("./routeHandler/attendanceHandler");
 const AddCourseHandler = require("./routeHandler/AddCourseHandler");
 const leaveHandler = require("./routeHandler/leaveHandler");
 const holidayHandler = require("./routeHandler/holidayHandler");
+const fileUpload = require("express-fileupload");
 const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload());
 
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.o0i8x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 mongoose

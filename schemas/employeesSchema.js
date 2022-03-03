@@ -23,7 +23,7 @@ const employeesSchema = mongoose.Schema({
     required: true,
   },
   phone: {
-    type: Number,
+    type: String,
     required: true,
   },
   nid: {
@@ -49,8 +49,7 @@ const employeesSchema = mongoose.Schema({
   lastSubject: String,
   lastInstitute: String,
   lastGrade: Number,
-
+  image: String,
 });
-
 
 module.exports = employeesSchema;

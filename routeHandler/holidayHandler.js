@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const holidaySchema = require("../schemas/holidaySchema");
 const Holiday = new mongoose.model("Holiday", holidaySchema);
+const attendanceSchema = require("../schemas/attendanceSchema");
+const Attendance = new mongoose.model("Attendance", attendanceSchema);
 
-//Post new holiday
+// //Post new holiday
 router.post("/", async (req, res) => {
   const newHoliday = new Holiday(req.body);
   await newHoliday.save((err) => {
@@ -19,6 +21,7 @@ router.post("/", async (req, res) => {
     }
   });
 });
+
 //Get holiday
 router.get("/", async (req, res) => {
   try {
