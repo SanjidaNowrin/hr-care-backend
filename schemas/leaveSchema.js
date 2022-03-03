@@ -2,11 +2,19 @@ const mongoose = require("mongoose");
 
 const leaveSchema = mongoose.Schema({
 
+    ID: {
+        type: String,
+        required: true,
+    },
     name: {
         type: String,
         required: true,
     },
-    email: {
+    department: {
+        type: String,
+        required: true,
+    },
+    designation: {
         type: String,
         required: true,
     },
