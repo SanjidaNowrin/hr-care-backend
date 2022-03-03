@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const employeesSchema = mongoose.Schema({
-  ID: String,
+  ID: Number,
   DOJ: String,
   Gross: Number,
   Account: Number,
