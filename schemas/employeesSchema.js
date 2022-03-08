@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const employeesSchema = mongoose.Schema({
-  ID: Number,
+  ID: String,
   DOJ: String,
   Gross: Number,
   Account: Number,
+  Status: String,
   name: {
     type: String,
     required: true,
@@ -22,7 +23,7 @@ const employeesSchema = mongoose.Schema({
     required: true,
   },
   phone: {
-    type: Number,
+    type: String,
     required: true,
   },
   nid: {
@@ -48,8 +49,7 @@ const employeesSchema = mongoose.Schema({
   lastSubject: String,
   lastInstitute: String,
   lastGrade: Number,
-
+  image: String,
 });
-
 
 module.exports = employeesSchema;

@@ -1,8 +1,10 @@
 const express = require("express");
+const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 const router = express.Router();
 const attendanceSchema = require("../schemas/attendanceSchema");
 const Attendance = new mongoose.model("Attendance", attendanceSchema);
+
 
 //Post entry time
 router.post("/", async (req, res) => {
@@ -52,6 +54,22 @@ router.get("/:email", async (req, res) => {
   }
 });
 
+//Get single ID by date
+router.get("/date/:date", async (req, res) => {
+  try {
+    const data = await Attendance.find({ date: req.params.date });
+    console.log(data);
+    res.status(200).json({
+      result: data,
+      message: "Success",
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: "There was a server side error!",
+    });
+  }
+});
+
 //UPDATE Leave Time
 router.put("/:_id", async (req, res) => {
   const result = await Attendance.findOneAndUpdate(
@@ -80,5 +98,19 @@ router.put("/:_id", async (req, res) => {
   console.log(result);
 });
 
+// DELETE Attendance by holiday
+router.delete("/:_id", async (req, res) => {
+  await Attendance.deleteOne({ _id: req.params._id }, (err) => {
+    if (err) {
+      res.status(500).json({
+        error: "There was a server side error!",
+      });
+    } else {
+      res.status(200).json({
+        message: "Holiday was deleted successfully!",
+      });
+    }
+  }).clone().catch(function (err) { console.log(err) })
+});
 
 module.exports = router;
