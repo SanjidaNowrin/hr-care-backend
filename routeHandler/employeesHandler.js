@@ -55,39 +55,39 @@ router.get("/:email", async (req, res) => {
 
 //UPDATE Employee Info
 router.put("/:_id", async (req, res) => {
-    try {
-        const updateEmployee = await Employees.findByIdAndUpdate(
-            req.params._id,
-            req.body,
-        );
-        const result=await updateEmployee.save();      
-        res.status(200).send({result, data: updateEmployee });
-        console.log(updateEmployee);
+  try {
+    const updateEmployee = await Employees.findByIdAndUpdate(
+      req.params._id,
+      req.body,
+    );
+    const result = await updateEmployee.save();
+    res.status(200).send({ result, data: updateEmployee });
+    console.log(updateEmployee);
 
-    } catch {
-        res.status(404).send({ error: "Employee is not found!" });
-    }
+  } catch {
+    res.status(404).send({ error: "Employee is not found!" });
+  }
 
 });
 //ChnageImage method
-router.put("/:email", async (req, res) => {
-  const pic=req.files.image;
+router.put("/e/:email", async (req, res) => {
+  const pic = req.files.image;
   console.log(req.files.image);
-  const picData=pic.data;
-  const encodedPic=picData.toString('base64');
-  const imageBuffer=Buffer.from(encodedPic,'base64');
-  const photoURL={photo:imageBuffer}
+  const picData = pic.data;
+  const encodedPic = picData.toString('base64');
+  const imageBuffer = Buffer.from(encodedPic, 'base64');
+  const photoURL = { photo: imageBuffer }
   try {
-      const updateEmployee = await Employees.findByIdAndUpdate(
-          req.params._id,
-          photoURL
-      );
-      const result=await updateEmployee.save();      
-      res.status(200).send({result, data: updateEmployee });
-      console.log(updateEmployee);
+    const updateEmployee = await Employees.findByIdAndUpdate(
+      req.params._id,
+      photoURL
+    );
+    const result = await updateEmployee.save();
+    res.status(200).send({ result, data: updateEmployee });
+    console.log(updateEmployee);
 
   } catch {
-      res.status(404).send({ error: "Employee is not found!" });
+    res.status(404).send({ error: "Employee is not found!" });
   }
 
 });
