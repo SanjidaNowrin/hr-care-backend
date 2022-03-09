@@ -49,6 +49,7 @@ const employeesSchema = mongoose.Schema({
   lastInstitute: String,
   lastGrade: Number,
   image: String,
+  photo:String,
 });
 
 module.exports = employeesSchema;
