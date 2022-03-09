@@ -47,6 +47,9 @@ const errorHandler = (err, req, res, next) => {
 };
 
 app.use(errorHandler);
+// app.put("/",async (req,res)=>{
+//     console.log("send data")
+// })
 
 app.get("/", (req, res) => {
     res.send("HR Care Server Running....");
