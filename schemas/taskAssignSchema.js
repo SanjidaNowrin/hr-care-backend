@@ -3,9 +3,14 @@ const taskAssignSchema = mongoose.Schema({
   ID: String,
   name: String,
   email: String,
-  task: [String],
+  // task: [String],
+  tags: [
+    {
+      type: String,
+    },
+  ],
   date: String,
-  startTime:String,
-  endTime:String,
+  startTime: String,
+  endTime: String,
 });
 module.exports = taskAssignSchema;
