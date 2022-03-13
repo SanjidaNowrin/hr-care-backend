@@ -52,7 +52,6 @@ const employeesSchema = mongoose.Schema({
   image: String,
   // photo: String,
   qrUrl: String,
-  status: String,
 });
 
 module.exports = employeesSchema;
