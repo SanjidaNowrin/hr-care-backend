@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
 require("dotenv").config();
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient } = require("mongodb");
 
 const employeesHandler = require("./routeHandler/employeesHandler");
 const announcementHandler = require("./routeHandler/announcementHandler");
@@ -12,6 +12,7 @@ const AddCourseHandler = require("./routeHandler/AddCourseHandler");
 const leaveHandler = require("./routeHandler/leaveHandler");
 const holidayHandler = require("./routeHandler/holidayHandler");
 const taskHandler = require("./routeHandler/taskAssignHandler");
+const userHandler = require("./routeHandler/usersHandler");
 const fileUpload = require("express-fileupload");
 const enrollHandler = require("./routeHandler/enrollHandler");
 const port = process.env.PORT || 5000;
@@ -26,7 +27,6 @@ mongoose
         useNewUrlParser: true,
         useUnifiedTopology: true,
         dbName: "hr-care",
-
     })
     .then(() => console.log("connection successful"))
     .catch((err) => console.log(err));
@@ -41,6 +41,7 @@ app.use("/holidays", holidayHandler);
 app.use("/enrolls", enrollHandler);
 app.use("/taskAssign", taskHandler);
 
+app.use("/user", userHandler);
 
 // default error handler
 const errorHandler = (err, req, res, next) => {
