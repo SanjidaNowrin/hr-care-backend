@@ -7,5 +7,6 @@ const attendanceSchema = mongoose.Schema({
   leave: String,
   vacation: String,
   holiday: String,
+  status: String,
 });
 module.exports = attendanceSchema;
