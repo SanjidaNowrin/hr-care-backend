@@ -53,7 +53,7 @@ router.delete("/:_id", async (req, res) => {
 
 //add done task
 router.put("/", async (req, res) => {
-  const filter = { email: req.query.email, date: req.query.date };
+  const filter = { email: req.body.email, date: req.body.date };
   const updateTask = { $set: { taskDone: req.body.task } }
   try {
     const updatedTask = await TaskAssign.findOneAndUpdate(filter, updateTask, {
