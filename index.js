@@ -40,8 +40,8 @@ app.use("/leave", leaveHandler);
 app.use("/holidays", holidayHandler);
 app.use("/enrolls", enrollHandler);
 app.use("/taskAssign", taskHandler);
-
 app.use("/user", userHandler);
+
 
 // default error handler
 const errorHandler = (err, req, res, next) => {
