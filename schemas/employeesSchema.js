@@ -3,9 +3,11 @@ const mongoose = require("mongoose");
 const employeesSchema = mongoose.Schema({
   ID: String,
   DOJ: String,
-  Gross: Number,
-  Account: Number,
-  Status: String,
+  status: String,
+  gross: Number,
+  bank: String,
+  account: Number,
+  gendar: String,
   name: {
     type: String,
     required: true,
