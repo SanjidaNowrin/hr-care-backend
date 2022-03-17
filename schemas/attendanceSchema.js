@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const attendanceSchema = mongoose.Schema({
-  ID: Number,
+  ID: String,
   email: String,
   date: String,
   entry: String,

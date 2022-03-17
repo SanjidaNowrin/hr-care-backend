@@ -13,6 +13,7 @@ const leaveHandler = require("./routeHandler/leaveHandler");
 const holidayHandler = require("./routeHandler/holidayHandler");
 const taskHandler = require("./routeHandler/taskAssignHandler");
 const fileUpload = require("express-fileupload");
+const enrollHandler = require("./routeHandler/enrollHandler");
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -38,6 +39,7 @@ app.use("/courses", AddCourseHandler);
 app.use("/leave", leaveHandler);
 app.use("/holidays", holidayHandler);
 app.use("/taskAssign", taskHandler);
+app.use("/enrolls", enrollHandler);
 
 
 // default error handler

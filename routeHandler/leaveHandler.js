@@ -64,4 +64,19 @@ router.put("/:_id", async (req, res) => {
     }
 
 });
+
+// DELETE Leave
+router.delete("/:_id", async (req, res) => {
+    await Leave.deleteOne({ _id: req.params._id }, (err) => {
+        if (err) {
+            res.status(500).json({
+                error: "There was a server side error!",
+            });
+        } else {
+            res.status(200).json({
+                message: "Holiday was deleted successfully!",
+            });
+        }
+    }).clone().catch(function (err) { console.log(err) })
+});
 module.exports = router;

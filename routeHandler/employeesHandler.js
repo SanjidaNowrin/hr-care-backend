@@ -72,7 +72,7 @@ router.put("/profile/:email", async (req, res) => {
   const picData = pic.data;
   const encodedPic = picData.toString("base64");
   // const imageBuffer = Buffer.from(encodedPic, "base64");
-  const photoURL = { photo: encodedPic};
+  const photoURL = { photo: encodedPic };
   const filter = { email: req.params.email };
   try {
     const updateEmployee = await Employees.findOneAndUpdate(filter, photoURL);

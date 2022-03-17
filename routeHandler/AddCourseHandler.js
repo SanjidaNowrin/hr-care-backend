@@ -8,7 +8,6 @@ const Course = new mongoose.model("Course", addCourseSchema);
 // POST Course
 router.post("/", async (req, res) => {
     const newCourse = new Course(req.body);
-    console.log(req.body);
     try {
         const data = await newCourse.save((err) => {
             if (err) {
@@ -36,6 +35,24 @@ router.get("/", async (req, res) => {
         console.log(err);
         res.status(500).json({
             message: "There was an error on the server side",
+        });
+    }
+});
+
+// DELETE Course
+router.delete("/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const deleteById = await Course.findByIdAndRemove(id, (err) => {
+            if (err) {
+                res.status(500).json({
+                    message: "There was an error on the server side",
+                });
+            }
+        });
+    } catch {
+        res.status(200).json({
+            message: "successfully deleted",
         });
     }
 });
