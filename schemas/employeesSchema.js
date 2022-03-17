@@ -8,6 +8,7 @@ const employeesSchema = mongoose.Schema({
   bank: String,
   account: Number,
   gendar: String,
+  blood: String,
   name: {
     type: String,
     required: true,
