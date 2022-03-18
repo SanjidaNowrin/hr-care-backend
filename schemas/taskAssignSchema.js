@@ -12,5 +12,6 @@ const taskAssignSchema = mongoose.Schema({
   date: String,
   startTime: String,
   endTime: String,
+  taskDone: [String]
 });
 module.exports = taskAssignSchema;
