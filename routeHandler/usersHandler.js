@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
   });
 });
 
-router.put("/", verifyToken, async (req, res) => {
+router.put("/admin", verifyToken, async (req, res) => {
     console.log(req.body.email);
   // console.log("put", req.decodedEmail);
   const requester = req.decodedEmail;
