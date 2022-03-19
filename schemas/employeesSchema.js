@@ -3,9 +3,12 @@ const mongoose = require("mongoose");
 const employeesSchema = mongoose.Schema({
   ID: String,
   DOJ: String,
-  Gross: Number,
-  Account: Number,
-  Status: String,
+  status: String,
+  gross: Number,
+  bank: String,
+  account: Number,
+  gendar: String,
+  blood: String,
   name: {
     type: String,
     required: true,
@@ -50,6 +53,8 @@ const employeesSchema = mongoose.Schema({
   lastInstitute: String,
   lastGrade: Number,
   image: String,
+  photo:String,
+  qrUrl:String,
 });
 
 module.exports = employeesSchema;

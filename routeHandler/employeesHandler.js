@@ -4,7 +4,6 @@ const router = express.Router();
 const employeesSchema = require("../schemas/employeesSchema");
 const Employees = new mongoose.model("employee", employeesSchema);
 const fileUpload = require("express-fileupload");
-
 // POST A Employees
 router.post("/", async (req, res) => {
     const newEmployees = new Employees(req.body);
@@ -56,14 +55,34 @@ router.get("/:email", async (req, res) => {
 
 //UPDATE Employee Info
 router.put("/:_id", async (req, res) => {
-    try {
-        const updateEmployee = await Employees.findByIdAndUpdate(req.params._id, req.body);
-        const result = await updateEmployee.save();
-        res.status(200).send({ result, data: updateEmployee });
-        console.log(updateEmployee);
-    } catch {
-        res.status(404).send({ error: "Employee is not found!" });
-    }
+  try {
+    const updateEmployee = await Employees.findByIdAndUpdate(
+      req.params._id,
+      req.body
+    );
+    const result = await updateEmployee.save();
+    res.status(200).send({ result, data: updateEmployee });
+    console.log(updateEmployee);
+  } catch {
+    res.status(404).send({ error: "Employee is not found!" });
+  }
+});
+//ChnageImage method
+router.put("/profile/:email", async (req, res) => {
+  const pic = req.files.photo;
+  const picData = pic.data;
+  const encodedPic = picData.toString("base64");
+  // const imageBuffer = Buffer.from(encodedPic, "base64");
+  const photoURL = { photo: encodedPic };
+  const filter = { email: req.params.email };
+  try {
+    const updateEmployee = await Employees.findOneAndUpdate(filter, photoURL);
+    const result = await updateEmployee.save();
+    res.status(200).send({ result, data: updateEmployee });
+    console.log(updateEmployee);
+  } catch {
+    res.status(404).send({ error: "Employee is not found!" });
+  }
 });
 
 module.exports = router;
