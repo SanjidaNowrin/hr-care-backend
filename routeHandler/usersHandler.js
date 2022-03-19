@@ -1,10 +1,53 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const router = express.Router();
 const usersSchema = require("../schemas/usersSchema");
 const User = new mongoose.model("User", usersSchema);
 
-// POST A Employees
+// LOGIN
+router.post("/login", async (req, res) => {
+    try {
+        const user = await jwtUser.find({ name: req.body.name });
+        if (user && user.length > 0) {
+            const isValidEmail = await bcrypt.compare(req.body.email, user[0].email);
+
+            if (isValidEmail) {
+                // generate token
+                const token = jwt.sign(
+                    {
+                        name: user[0].name,
+                        userId: user[0]._id,
+                    },
+                    process.env.JWT_SECRET,
+                    {
+                        expiresIn: "1h",
+                    }
+                );
+
+                res.status(200).json({
+                    access_token: token,
+                    message: "Login successful!",
+                });
+            } else {
+                res.status(401).json({
+                    error: "Authetication failed!",
+                });
+            }
+        } else {
+            res.status(401).json({
+                error: "Authetication failed!",
+            });
+        }
+    } catch {
+        res.status(401).json({
+            error: "Authetication faileds!",
+        });
+    }
+});
+
+// sign up user
 router.post("/", async (req, res) => {
     const newUsers = new User(req.body);
     console.log(newUsers);
@@ -21,8 +64,9 @@ router.post("/", async (req, res) => {
     });
 });
 
+//update user
 router.put("/", async (req, res) => {
-    console.log(req.body.email);
+    console.log("put", req.headers.authorization);
     try {
         const user = await User.findOneAndUpdate(
             { email: req.body.email },
@@ -34,10 +78,11 @@ router.put("/", async (req, res) => {
             message: "Success",
         });
     } catch {
-        res.status(404).send({ error: "admin is not found!" });
+        res.status(404).send({ error: "user is not found!" });
     }
 });
 
+//find admin
 router.get("/:email", async (req, res) => {
     console.log("users handler");
     try {
@@ -45,7 +90,7 @@ router.get("/:email", async (req, res) => {
         res.status(200).json({
             result: admin,
             message: "Success",
-        })
+        });
     } catch {
         res.status(404).send({ error: "admin is not found!" });
     }
