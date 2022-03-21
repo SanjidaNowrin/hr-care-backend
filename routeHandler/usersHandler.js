@@ -15,7 +15,7 @@ async function verifyToken(req, res, next) {
       console.log(decodedUser);
       req.decodedEmail = decodedUser.email;
       console.log(decodedUser.email);
-    } catch {}
+    } catch { }
   }
   next();
 }
@@ -62,6 +62,25 @@ router.put("/admin", verifyToken, async (req, res) => {
   }
 });
 
+//update user
+router.put("/", async (req, res) => {
+  console.log("put", req.headers.authorization);
+  try {
+    const user = await User.findOneAndUpdate(
+      { email: req.body.email },
+      { name: req.body.name, email: req.body.email },
+      { upsert: true }
+    );
+    res.status(200).json({
+      result: user,
+      message: "Success",
+    });
+  } catch {
+    res.status(404).send({ error: "user is not found!" });
+  }
+});
+
+//find admin
 router.get("/:email", async (req, res) => {
   console.log("users handler");
   try {

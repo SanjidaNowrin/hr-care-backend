@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const app = express();
 const cors = require("cors");
 const admin = require("firebase-admin");
@@ -26,6 +27,7 @@ admin.initializeApp({
 });
 
 app.use(cors());
+dotenv.config();
 app.use(express.json());
 app.use(fileUpload());
 
@@ -39,8 +41,23 @@ mongoose
   .then(() => console.log("connection successful"))
   .catch((err) => console.log(err));
 
+//jwt verify
+async function verifyToken(req, res, next) {
+    if (req.headers?.authorization?.startsWith("Bearer ")) {
+        const token = req.headers.authorization.split("Bearer ")[1];
+        console.log(token);
+
+        try {
+            const decodedUser = await admin.auth().verifyIdToken(token);
+            console.log(decodedUser);
+            req.decodedEmail = decodedUser.email;
+        } catch {}
+    }
+    next();
+}
+
 // application routes
-app.use("/employees", employeesHandler);
+app.use("/employees", verifyToken, employeesHandler);
 app.use("/announcement", announcementHandler);
 app.use("/attendance", attendanceHandler);
 app.use("/courses", AddCourseHandler);
