@@ -23,6 +23,23 @@ router.post("/", async (req, res) => {
 
 // Get employees
 router.get("/", async (req, res) => {
+  const allEmployees = await Employees.find({})
+    .select({ photo: 0})
+    .exec((error, data) => {
+      if (error) {
+        res.status(500).json({
+          error: "There was a server side error!",
+        });
+      } else {
+        res.status(200).json({
+          result: data,
+          message: "Employee was inserted successfully!",
+        });
+      }
+    });
+});
+//with photo get route
+router.get("/all", async (req, res) => {
   try {
     const allEmployees = await Employees.find({});
     res.status(200).json({
@@ -66,8 +83,9 @@ router.put("/:_id", async (req, res) => {
     res.status(404).send({ error: "Employee is not found!" });
   }
 });
-//ChnageImage method
+//ChangeImage method
 router.put("/profile/:email", async (req, res) => {
+  
   const pic = req.files.photo;
   const picData = pic.data;
   const encodedPic = picData.toString("base64");
