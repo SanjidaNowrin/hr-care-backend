@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 const announcementSchema = mongoose.Schema({
-    name: {
+    ID: {
+        type: String,
+    },
+    email: {
         type: String,
     },
     title: {
