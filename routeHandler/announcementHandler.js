@@ -40,7 +40,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-//GET ALL ANNOUNCEMENT
+//GET User ANNOUNCEMENT
 router.get("/:email", async (req, res) => {
     try {
         const announcements = await Announcement.find({ email: req.params.email });
@@ -56,20 +56,22 @@ router.get("/:email", async (req, res) => {
     }
 });
 
+//approved leave application
+router.put("/:_id", async (req, res) => {
+    try {
+        const updateAnnouncement = await Leave.findByIdAndUpdate(
+            { _id: req.params._id },
+            {
+                status: req.body.status,
+            },
+            { new: true }
+        );
 
-// router.get("/:email", async (req, res) => {
-//     console.log(req.headers.authorization);
-//     try {
-//         const data = await Employees.find({ email: req.params.email });
-//         res.status(200).json({
-//             result: data,
-//             message: "Success",
-//         });
-//     } catch (err) {
-//         res.status(500).json({
-//             error: "There was a server side error!",
-//         });
-//     }
-// });
+        res.status(200).send({ data: updateAnnouncement });
+        console.log(updateAnnouncement);
+    } catch {
+        res.status(404).send({ message: "There was an error on the server side!" });
+    }
+});
 
 module.exports = router;
