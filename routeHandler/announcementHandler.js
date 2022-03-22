@@ -62,7 +62,7 @@ router.put("/:_id", async (req, res) => {
         const updateAnnouncement = await Leave.findByIdAndUpdate(
             { _id: req.params._id },
             {
-                status: req.body.status,
+                status: "read",
             },
             { new: true }
         );
