@@ -59,7 +59,7 @@ router.get("/:email", async (req, res) => {
 //approved leave application
 router.put("/:_id", async (req, res) => {
     try {
-        const updateLeave = await Leave.findByIdAndUpdate(
+        const updateAnnouncement = await Announcement.findByIdAndUpdate(
             { _id: req.params._id },
             {
                 status: req.body.status,
@@ -67,8 +67,8 @@ router.put("/:_id", async (req, res) => {
             { new: true }
         );
 
-        res.status(200).send({ data: updateLeave });
-        console.log(updateLeave);
+        res.status(200).send({ data: updateAnnouncement });
+        console.log(updateAnnouncement);
     } catch {
         res.status(404).send({ message: "There was an error on the server side!" });
     }
