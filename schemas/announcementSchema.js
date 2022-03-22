@@ -1,23 +1,12 @@
 const mongoose = require("mongoose");
 
 const announcementSchema = mongoose.Schema({
-    ID: {
-        type: String,
-    },
-    email: {
-        type: String,
-    },
-    title: {
-        type: String,
-        required: true,
-    },
-
-    date: {
-        type: String,
-    },
-    text: {
-        type: String,
-    },
+    ID: String,
+    email: String,
+    title: String,
+    date: String,
+    text: String,
+    status: String,
 });
 
 module.exports = announcementSchema;

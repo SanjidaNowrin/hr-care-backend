@@ -40,4 +40,36 @@ router.get("/", async (req, res) => {
     }
 });
 
+//GET ALL ANNOUNCEMENT
+router.get("/:email", async (req, res) => {
+    try {
+        const announcements = await Announcement.find({ email: req.params.email });
+        res.status(200).json({
+            data: announcements,
+            message: "Announcement Success",
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "There was an error on the server side",
+        });
+    }
+});
+
+
+// router.get("/:email", async (req, res) => {
+//     console.log(req.headers.authorization);
+//     try {
+//         const data = await Employees.find({ email: req.params.email });
+//         res.status(200).json({
+//             result: data,
+//             message: "Success",
+//         });
+//     } catch (err) {
+//         res.status(500).json({
+//             error: "There was a server side error!",
+//         });
+//     }
+// });
+
 module.exports = router;
