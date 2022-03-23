@@ -25,10 +25,21 @@ router.post("/", async (req, res) => {
 
 //Get entry time
 router.get("/", async (req, res) => {
+  const page = req.query.page;
+  const size = parseInt(req.query.size);
+  console.log(page, size)
+  let attendance;
+  const count = await Attendance.where({}).count()
   try {
-    const attendance = await Attendance.find({});
+    if (page) {
+      attendance = await Attendance.find({}).skip(page * size).limit(size);
+    } else {
+      attendance = await Attendance.find({})
+    }
+
     res.status(200).json({
       data: attendance,
+      count,
       message: "attendance Success",
     });
   } catch (err) {
