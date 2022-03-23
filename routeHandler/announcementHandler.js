@@ -55,4 +55,38 @@ router.get("/", async (req, res) => {
     }
 });
 
+//GET User ANNOUNCEMENT
+router.get("/:email", async (req, res) => {
+    try {
+        const announcements = await Announcement.find({ email: req.params.email });
+        res.status(200).json({
+            data: announcements,
+            message: "Announcement Success",
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "There was an error on the server side",
+        });
+    }
+});
+
+//approved leave application
+router.put("/:_id", async (req, res) => {
+    try {
+        const updateAnnouncement = await Announcement.findByIdAndUpdate(
+            { _id: req.params._id },
+            {
+                status: req.body.status,
+            },
+            { new: true }
+        );
+
+        res.status(200).send({ data: updateAnnouncement });
+        console.log(updateAnnouncement);
+    } catch {
+        res.status(404).send({ message: "There was an error on the server side!" });
+    }
+});
+
 module.exports = router;
