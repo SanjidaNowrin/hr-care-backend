@@ -25,10 +25,20 @@ router.post("/", async (req, res) => {
 });
 //get all leave
 router.get("/", async (req, res) => {
+    const page = req.query.page;
+    const size = parseInt(req.query.size);
+    let allLeave;
+    const count = await Leave.where({}).count()
     try {
-        const allLeave = await Leave.find({});
+        if (page) {
+            allLeave = await Leave.find({}).skip(page * size).limit(size);
+        } else {
+            allLeave = await Leave.find({});
+        }
+
         res.status(200).json({
             data: allLeave,
+            count,
             message: "Leave Success",
         });
     } catch (err) {
