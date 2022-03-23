@@ -6,25 +6,25 @@ const Employees = new mongoose.model("employee", employeesSchema);
 const fileUpload = require("express-fileupload");
 // POST A Employees
 router.post("/", async (req, res) => {
-    const newEmployees = new Employees(req.body);
+  const newEmployees = new Employees(req.body);
 
-    await newEmployees.save((err) => {
-        if (err) {
-            res.status(500).json({
-                error: "There was a server side error!",
-            });
-        } else {
-            res.status(200).json({
-                message: "Employee was inserted successfully!",
-            });
-        }
-    });
+  await newEmployees.save((err) => {
+    if (err) {
+      res.status(500).json({
+        error: "There was a server side error!",
+      });
+    } else {
+      res.status(200).json({
+        message: "Employee was inserted successfully!",
+      });
+    }
+  });
 });
 
 // Get employees
 router.get("/", async (req, res) => {
   const allEmployees = await Employees.find({})
-    .select({ photo: 0})
+    .select({ photo: 0 })
     .exec((error, data) => {
       if (error) {
         res.status(500).json({
@@ -56,18 +56,35 @@ router.get("/all", async (req, res) => {
 
 //Get single employee by email
 router.get("/:email", async (req, res) => {
-    console.log(req.headers.authorization);
-    try {
-        const data = await Employees.find({ email: req.params.email });
-        res.status(200).json({
-            result: data,
-            message: "Success",
-        });
-    } catch (err) {
+  console.log(req.headers.authorization);
+  try {
+    const data = await Employees.find({ email: req.params.email });
+    res.status(200).json({
+      result: data,
+      message: "Success",
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: "There was a server side error!",
+    });
+  }
+});
+//get without image
+router.get("/withoutImage/:email", async (req, res) => {
+  const data = await Employees.find({ email: req.params.email })
+    .select({ photo: 0,image:0 })
+    .exec((error, data) => {
+      if (error) {
         res.status(500).json({
-            error: "There was a server side error!",
+          error: "There was a server side error!",
         });
-    }
+      } else {
+        res.status(200).json({
+          result: data,
+          message: "Employee was inserted successfully!",
+        });
+      }
+    });
 });
 
 //UPDATE Employee Info
@@ -86,7 +103,6 @@ router.put("/:_id", async (req, res) => {
 });
 //ChangeImage method
 router.put("/profile/:email", async (req, res) => {
-  
   const pic = req.files.photo;
   const picData = pic.data;
   const encodedPic = picData.toString("base64");
