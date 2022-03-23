@@ -43,17 +43,17 @@ mongoose
 
 //jwt verify
 async function verifyToken(req, res, next) {
-    if (req.headers?.authorization?.startsWith("Bearer ")) {
-        const token = req.headers.authorization.split("Bearer ")[1];
-        console.log(token);
+  if (req.headers?.authorization?.startsWith("Bearer ")) {
+    const token = req.headers.authorization.split("Bearer ")[1];
+    console.log(token);
 
-        try {
-            const decodedUser = await admin.auth().verifyIdToken(token);
-            console.log(decodedUser);
-            req.decodedEmail = decodedUser.email;
-        } catch {}
-    }
-    next();
+    try {
+      const decodedUser = await admin.auth().verifyIdToken(token);
+      console.log(decodedUser);
+      req.decodedEmail = decodedUser.email;
+    } catch { }
+  }
+  next();
 }
 
 // application routes
