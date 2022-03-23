@@ -26,10 +26,25 @@ router.post("/", async (req, res) => {
 
 //GET ALL ANNOUNCEMENT
 router.get("/", async (req, res) => {
+    const page = req.query.page;
+    const size = parseInt(req.query.size);
+    console.log(page, size)
+    let query;
+
+    const count = await Announcement.where({}).count()
+
     try {
-        const announcements = await Announcement.find({});
+        if (page) {
+            query = await Announcement.find({}).skip(page * size).limit(size);
+        } else {
+            query = await Announcement.find({})
+        }
+
+        console.log(count)
+
         res.status(200).json({
-            data: announcements,
+            data: query,
+            count,
             message: "Announcement Success",
         });
     } catch (err) {
