@@ -38,21 +38,26 @@ router.get("/", async (req, res) => {
       }
     });
 });
-//with photo get route
-router.get("/all", async (req, res) => {
-  try {
-    const allEmployees = await Employees.find({});
-    res.status(200).json({
-      data: allEmployees,
-      message: "allEmployees Success",
+
+
+// Get employees without all pic
+router.get("/rp", async (req, res) => {
+  const allEmployees = await Employees.find({})
+    .select({ photo: 0, image: 0, qrUrl: 0 })
+    .exec((error, data) => {
+      if (error) {
+        res.status(500).json({
+          error: "There was a server side error!",
+        });
+      } else {
+        res.status(200).json({
+          result: data,
+          message: "Employee was inserted successfully!",
+        });
+      }
     });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({
-      message: "There was an error on the server side",
-    });
-  }
 });
+
 
 //Get single employee by email
 router.get("/photo/:email", async (req, res) => {
