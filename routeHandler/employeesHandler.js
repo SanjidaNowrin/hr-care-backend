@@ -55,7 +55,7 @@ router.get("/all", async (req, res) => {
 });
 
 //Get single employee by email
-router.get("/:email", async (req, res) => {
+router.get("/photo/:email", async (req, res) => {
   console.log(req.headers.authorization);
   try {
     const data = await Employees.find({ email: req.params.email });
@@ -70,9 +70,9 @@ router.get("/:email", async (req, res) => {
   }
 });
 //get without image
-router.get("/withoutImage/:email", async (req, res) => {
+router.get("/:email", async (req, res) => {
   const data = await Employees.find({ email: req.params.email })
-    .select({ photo: 0,image:0 })
+    .select({ photo: 0 })
     .exec((error, data) => {
       if (error) {
         res.status(500).json({
