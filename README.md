@@ -5,10 +5,10 @@
 
 
 ## Project Type
-This is human resource management software also known as pay software. Using this software, a company can manage their employer details, attendance, leave, vacation, salary etc.
+This is human resource management software also known as payroll software. Using this software, a company can manage their employer details, attendance, leave, vacation, salary etc.
 
 ##  Goal 
-This is human resource management software also known as payroll software. Using this software, a company can manage their employer details, attendance, leave, vacation, salary etc.
+Create a complete HRM system for any company to maintain a database of their employers, including daily attendance, personal information, performance, monthly Employer Salary Sheet prepare, etc 
 
 ## This Application Features
 ### Employers panel:
