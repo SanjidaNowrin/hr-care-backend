@@ -1,15 +1,14 @@
 # HRM Application (HR Care)
 
 [Live Link](https://hrcare.netlify.app/) ||
-[Github Client](https://github.com/md-mh/hr-care-client) ||
-[Github Server](https://github.com/md-mh/hr-care-backend)
+[Github Client](https://github.com/md-mh/hr-care-client)
 
 
 ## Project Type
 This is human resource management software also known as pay software. Using this software, a company can manage their employer details, attendance, leave, vacation, salary etc.
 
 ##  Goal 
-Create a complete HRM system for any company to maintain a database of their employers, including daily attendance, personal information, and performance.
+This is human resource management software also known as payroll software. Using this software, a company can manage their employer details, attendance, leave, vacation, salary etc.
 
 ## This Application Features
 ### Employers panel:
