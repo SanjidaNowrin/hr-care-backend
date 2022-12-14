@@ -1,7 +1,7 @@
 # HRM Application (HR Care)
 
 [Live Link](https://hr-care-management.netlify.app/) ||
-[Github Client](https://github.com/md-mh/hr-care-client)
+[Github Client](https://github.com/SanjidaNowrin/hr-care-client)
 
 
 ## Project Type
