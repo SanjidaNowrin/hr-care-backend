@@ -1,6 +1,6 @@
 # HRM Application (HR Care)
 
-[Live Link](https://hrcare.netlify.app/) ||
+[Live Link](https://hr-care-management.netlify.app/) ||
 [Github Client](https://github.com/md-mh/hr-care-client)
 
 
